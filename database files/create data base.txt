@@ -1,0 +1,39 @@
+-- Create the database if it does not exist
+CREATE DATABASE booking;
+
+-- Switch to the `booking` database
+\c booking;
+
+-- Table structure for table `authors`
+DROP TABLE IF EXISTS authors;
+
+CREATE TABLE authors (
+  id SERIAL PRIMARY KEY,  -- SERIAL will auto-increment the ID
+  name VARCHAR(255) DEFAULT NULL
+);
+
+-- Insert data into the `authors` table
+INSERT INTO authors (name) VALUES
+('Amr'),
+('Emad'),
+('Alaa');
+
+-- Table structure for table `books`
+DROP TABLE IF EXISTS books;
+
+CREATE TABLE books (
+  id SERIAL PRIMARY KEY,  -- SERIAL will auto-increment the ID
+  price DOUBLE PRECISION NOT NULL,
+  title VARCHAR(255) DEFAULT NULL,
+  author_id BIGINT REFERENCES authors(id) ON DELETE SET NULL  -- Foreign key reference with ON DELETE behavior
+);
+
+-- Insert data into the `books` table
+INSERT INTO books (price, title, author_id) VALUES
+(621.254, 'Linux Administrator', 1),
+(165.87, 'Chicken farming', 2),
+(554.25, 'VFX artist', 1),
+(305.498, 'Happy Life', 2),
+(1897.55, 'Java Data Structure', 3),
+(565, 'Hope2', 1),
+(565, 'Hope2', 1);
